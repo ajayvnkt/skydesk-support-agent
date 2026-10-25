@@ -1,0 +1,111 @@
+# SkyDesk policy as data. Every number here is copied from a corpus/ policy doc (the `source`
+# of each rule) and tests/test_policy_corpus.py parses those docs to prove they still agree.
+# All money in USD.
+currency: USD
+
+fare_classes:
+  SkyLite:
+    voluntary_refund: taxes_only        # REF-007
+    cancel_fee: null
+    change_fee: null                    # changes not permitted (CHG-004)
+    same_day_fee: null                  # same-day not available
+    lower_fare_difference: none
+    no_show: forfeit
+  SkyClassic:
+    voluntary_refund: credit_minus_fee  # REF-002
+    cancel_fee: 100
+    change_fee: 75                      # per passenger, per direction
+    same_day_fee: 50
+    lower_fare_difference: forfeit      # a lower new fare is not refunded
+    no_show: forfeit
+  SkyFlex:
+    voluntary_refund: full
+    cancel_fee: 0
+    change_fee: 0
+    same_day_fee: 0
+    lower_fare_difference: travel_credit
+    no_show: credit_minus_fee
+  SkyBusiness:
+    voluntary_refund: full
+    cancel_fee: 0
+    change_fee: 0
+    same_day_fee: 0
+    lower_fare_difference: travel_credit
+    no_show: credit_minus_fee
+
+no_show_fee: 100
+risk_free: {window_hours: 24, min_days_before_departure: 7}
+change: {min_hours_before_departure: 2}
+same_day: {window_hours_before_departure: 24}
+taxes_refund_months_after_travel: 12
+schedule_change: {threshold_minutes: 90, rebook_window_days: 3}
+delay:
+  claim_days: 30
+  tiers:   # arrival delay, controllable causes only, per passenger, not cumulative
+    - {min_minutes: 0,   max_minutes: 120,  kind: none,           amount: 0}
+    - {min_minutes: 120, max_minutes: 180,  kind: meal_voucher,   amount: 15}
+    - {min_minutes: 180, max_minutes: 300,  kind: travel_credit,  amount: 100, alt_miles: 7500}
+    - {min_minutes: 300, max_minutes: null, kind: travel_credit,  amount: 250, alt_refund: true}
+airline_cancellation: {controllable_credit: 250, window_days: 14}
+vouchers: {validity_months: 12, max_combined: 3, extension_months: 3, extension_request_days: 30}
+goodwill_max_frontline: 50
+verification: {max_failures: 3, lock_hours: 24}
+
+teams:
+  care: {name: Care Team, sla: "personal contact from a Care Team specialist (available 24 hours a day)", code: ESC-CARE}
+  payments: {name: Payments Integrity, sla: "reply by email within 2 business days", code: ESC-PAY}
+  customer_relations: {name: Customer Relations, sla: "acknowledgment within 1 business day, full written response within 30 days", code: ESC-LEGAL}
+  contact_center: {name: Contact center agent, sla: "a contact center agent follows up", code: ESC-AGENT}
+
+exceptions:
+  bereavement:
+    rule_id: EXC-BRV
+    team: care
+    keywords: [died, death, dead, passed away, funeral, bereavement, terminally ill, dying, memorial service]
+  fraud:
+    rule_id: EXC-FRD
+    team: payments
+    keywords: [chargeback, charge back, dispute the charge, disputed the charge, card dispute, bank dispute,
+               "didn't make this booking", did not make this booking, unauthorized, unauthorised, stolen card,
+               someone used my card, account takeover, hacked, "didn't authorize", did not authorize, fraud]
+  legal:
+    rule_id: EXC-LGL
+    team: customer_relations
+    keywords: [lawyer, attorney, lawsuit, sue you, suing, small claims, legal action, department of transportation,
+               dot, dot complaint, regulator, consumer protection, journalist, the media, the press,
+               injury, injured, discrimination, discriminated, discriminatory]
+
+rules:
+  BKG-001: {source: policy-refunds-cancellations, text: "The booking must be active (not flown, cancelled or refunded)."}
+  VER-001: {source: policy-identity-verification, text: "The customer must be verified (booking reference + last name + card last 4) before any refund, credit, waiver, rebooking, cancellation or contact change."}
+  VER-002: {source: policy-identity-verification, text: "A contact change is confirmed with a one-time code sent to the EXISTING email or phone; a customer who lost access to both needs a contact center agent and a supervisor."}
+  VER-003: {source: policy-identity-verification, text: "After 3 failed verification attempts the booking is locked for 24 hours; agents must not override the lock."}
+  R24-001: {source: policy-24-hour-cancellation, text: "Cancelled within 24 hours of the booking time."}
+  R24-002: {source: policy-24-hour-cancellation, text: "Booked at least 7 days before the first flight's departure."}
+  R24-003: {source: policy-24-hour-cancellation, text: "Booked directly with SkyDesk (not a travel agency)."}
+  REF-001: {source: policy-refunds-cancellations, text: "SkyFlex and SkyBusiness: full refund, no fee, to the original form of payment."}
+  REF-002: {source: policy-refunds-cancellations, text: "SkyClassic: travel credit for the fare value minus a $100 cancellation fee; never cash."}
+  REF-003: {source: policy-refunds-cancellations, text: "A refund can never exceed the total fare paid (base fare + taxes) plus refundable extras, minus anything already refunded."}
+  REF-004: {source: policy-refunds-cancellations, text: "The part of a fare paid with a travel credit is returned as a travel credit, not cash."}
+  REF-005: {source: policy-refunds-cancellations, text: "A ticket must be cancelled before the scheduled departure, otherwise it is a no-show."}
+  REF-006: {source: policy-refunds-cancellations, text: "Tickets issued by a travel agency must be refunded and changed by that agency."}
+  REF-007: {source: policy-refunds-cancellations, text: "SkyLite is non-refundable; government taxes and airport fees are refunded on request within 12 months of the travel date."}
+  REF-008: {source: policy-baggage-fees, text: "Seats and bag fees are refunded only when SkyDesk cancels, within the 24-hour window, or when a refundable fare is cancelled before departure."}
+  CHG-001: {source: policy-change-fees, text: "Change fee: SkyClassic $75 per passenger per direction; SkyFlex and SkyBusiness $0."}
+  CHG-002: {source: policy-change-fees, text: "The customer pays any fare increase; a lower new fare is not refunded on SkyClassic and is returned as travel credit on SkyFlex and SkyBusiness."}
+  CHG-003: {source: policy-change-fees, text: "Changes must be made at least 2 hours before the scheduled departure."}
+  CHG-004: {source: policy-change-fees, text: "SkyLite tickets cannot be changed."}
+  SDC-001: {source: policy-change-fees, text: "Same-day change from 24 hours before departure to an earlier/later flight on the same day and route: SkyClassic $50 with no fare difference, SkyFlex/SkyBusiness free, SkyLite not available."}
+  SCH-001: {source: policy-schedule-changes, text: "A schedule change of 90 minutes or more lets any fare class move free to a SkyDesk flight within 3 days on the same route, or cancel for a full refund."}
+  SCH-002: {source: policy-schedule-changes, text: "The schedule-change option must be chosen before the original departure time."}
+  DLY-001: {source: policy-delay-compensation, text: "Delay compensation is owed only when the cause was within SkyDesk's control."}
+  DLY-002: {source: policy-delay-compensation, text: "Tiers by arrival delay: under 2h nothing; 2h-<3h $15 meal voucher; 3h-<5h $100 travel credit or 7,500 SkyMiles; 5h+ $250 travel credit or a full refund of the unused portion."}
+  DLY-003: {source: policy-delay-compensation, text: "Tiers are not cumulative; taking the 5h+ refund replaces the $250 credit."}
+  DLY-004: {source: policy-delay-compensation, text: "Compensation must be claimed within 30 days of the flight."}
+  CXL-001: {source: policy-delay-compensation, text: "Controllable cancellation within 14 days of departure: free rebooking plus a $250 travel credit, or a full refund of the unused portion."}
+  CXL-002: {source: policy-refunds-cancellations, text: "When SkyDesk cancels a flight every fare class is entitled to a full refund of the unused portion or free rebooking; no compensation for uncontrollable causes."}
+  VCH-001: {source: policy-vouchers-credits, text: "Travel credits are valid 12 months from the issue date."}
+  WVR-001: {source: policy-agent-conduct, text: "Automated assistants cannot issue goodwill credits, fee waivers or credit extensions; a human agent/supervisor decides."}
+  EXC-BRV: {source: policy-bereavement, text: "Bereavement requests go to the Care Team; the assistant must not quote, promise or resolve."}
+  EXC-FRD: {source: policy-fraud-chargebacks, text: "Chargebacks, disputes, unauthorized bookings and account takeover go to Payments Integrity; no refund, credit, cancel or change meanwhile."}
+  EXC-LGL: {source: policy-legal-complaints, text: "Legal, regulator, media, injury or discrimination complaints go to Customer Relations; no admission or promise."}

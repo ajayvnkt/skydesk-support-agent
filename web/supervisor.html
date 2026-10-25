@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyDesk Supervisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a1f44'/%3E%3Cpath d='M6 19l20-8-6 10-4-3-3 5v-6z' fill='%2364b5ff'/%3E%3C/svg%3E">
+<style>
+  .sup-nav { background: linear-gradient(120deg, var(--navy), var(--navy-2)); color: #fff; }
+  .sup-nav .nav-in { display: flex; align-items: center; gap: 16px; height: 68px; }
+  .sup-nav .logo { color: #fff; }
+  .sup-nav .who-tag { margin-left: auto; font-size: 13px; opacity: .85; display: flex; align-items: center; gap: 8px; }
+  .sup-head { padding: 36px 0 12px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .sup-head h1 { margin: 0; font-size: 28px; letter-spacing: -.02em; }
+  .sup-head p { margin: 4px 0 0; color: var(--muted); }
+  .sup-count { font-weight: 800; color: var(--navy-2); background: var(--sky-soft); padding: 6px 12px; border-radius: 99px; font-size: 13px; }
+  .queue { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; padding: 12px 0 48px; align-items: start; }
+  .item { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 16px; box-shadow: var(--shadow); }
+  .item .ctx { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .item blockquote { margin: 0 0 4px; padding: 10px 12px; border-radius: 12px; background: #f6f8fc; font-size: 13.5px; color: #2b3a52; border-left: 3px solid var(--sky-2); }
+  .item .approval { box-shadow: none; }
+  .item .result { margin-top: 10px; font-size: 13px; padding: 10px 12px; border-radius: 12px; background: #e9f8f1; color: #0b5c3d; }
+  .item .result.bad { background: #fff1f1; color: #8f1f23; }
+  .empty { grid-column: 1 / -1; text-align: center; padding: 64px 16px; color: var(--muted); background: #fff; border: 1px dashed var(--line); border-radius: 20px; }
+  .empty b { display: block; color: var(--ink); font-size: 17px; margin-bottom: 4px; }
+  @media (max-width: 640px) { .queue { grid-template-columns: 1fr; } .sup-head h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M2 16l20-7-5 9-4-3-3 5v-6z"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 002-2h14a2 2 0 002 2v2a2 2 0 000 4v2a2 2 0 00-2 2H5a2 2 0 00-2-2v-2a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V4h6v3M9 20v1M15 20v1M9 11v5M15 11v5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-refund" viewBox="0 0 24 24"><path d="M4 12a8 8 0 108-8H7"/><path d="M9 1L6 4l3 3"/><path d="M12 8v8M10 10h3a1.5 1.5 0 010 3h-2a1.5 1.5 0 000 3h3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-6z"/><path d="M11 14l9-10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-min" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 7h12l-3-3M17 17H5l3 3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-retry" viewBox="0 0 24 24"><path d="M20 11a8 8 0 10-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a11 11 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2z"/></symbol>
+</svg>
+
+<header class="sup-nav">
+  <div class="wrap nav-in">
+    <a class="logo light" href="/" aria-label="SkyDesk Airways home"><span class="logo-mark"><svg><use href="#i-plane"/></svg></span><span>SkyDesk<b>Airways</b></span></a>
+    <span class="who-tag"><svg><use href="#i-shield"/></svg>Supervisor console &middot; supervisor@skydesk</span>
+  </div>
+</header>
+<main class="wrap">
+  <div class="sup-head">
+    <div><h1>Pending approvals</h1><p>Every change the assistant proposes waits here. Nothing is refunded, rebooked or cancelled until you approve it.</p></div>
+    <span class="sup-count" id="count">Loading...</span>
+  </div>
+  <section class="queue" id="queue" aria-live="polite"></section>
+</main>
+<script src="approval.js"></script>
+<script>
+const { esc } = window.ApprovalCard;
+const queue = document.getElementById("queue"), shown = new Map();
+async function decide(item, req, decision, edited_args, note) {
+  const res = await fetch("/api/approve", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ thread_id: req.thread_id, decision, edited_args, note, approver: "supervisor@skydesk" }) });
+  const r = await res.json().catch(() => ({ error: "Request failed" }));
+  const box = document.createElement("div");
+  box.className = "result" + (r.error || r.outcome === "escalated" ? " bad" : "");
+  box.innerHTML = r.error ? esc(r.error) : r.interrupt ? "Re-quoted with your edit: a new request is waiting below."
+    : `<b>Agent replied to the customer:</b> ${esc(r.reply || "")}`;
+  item.append(box);
+  setTimeout(load, 300);
+  return !r.error;
+}
+async function load() {
+  let data;
+  try { data = await (await fetch("/api/pending")).json(); } catch { return; }
+  const ids = new Set(data.pending.map((p) => p.approval_id));
+  document.getElementById("count").textContent = `${data.pending.length} waiting`;
+  for (const p of data.pending) {
+    if (shown.has(p.approval_id)) continue;
+    const item = document.createElement("article");
+    item.className = "item";
+    item.dataset.thread = p.thread_id;
+    item.innerHTML = `<div class="ctx"><span>Chat <code>${esc(p.thread_id)}</code></span><span>${esc((p.customer || {}).first_name || "")} ${esc((p.customer || {}).customer_id || "")}</span></div>
+      <blockquote>${esc(p.customer_message)}</blockquote>`;
+    item.append(window.ApprovalCard.render(p, (d, e, n) => decide(item, p, d, e, n)));
+    shown.set(p.approval_id, item);
+    queue.prepend(item);
+  }
+  for (const [id, item] of shown) if (!ids.has(id) && !item.querySelector(".result")) {
+    const c = item.querySelector(".approval");
+    if (c && !c.classList.contains("decided")) c.markDecided("Decided in chat");
+  }
+  queue.querySelector(".empty")?.remove();
+  if (!shown.size) queue.innerHTML = '<div class="empty"><b>No approvals waiting</b>When the assistant proposes a refund, rebooking or other change, it appears here.</div>';
+}
+load();
+setInterval(load, 3000);
+</script>
+</body>
+</html>

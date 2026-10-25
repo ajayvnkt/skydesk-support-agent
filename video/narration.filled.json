@@ -1,0 +1,212 @@
+[
+ {
+  "scene": "hook",
+  "beats": [
+   {
+    "key": "hook_type",
+    "say": "Here is a customer on the SkyDesk site. She booked this morning by mistake, and asks the assistant to cancel and refund her.",
+    "do": "open the chat, type the RSK7FT request, send"
+   },
+   {
+    "key": "hook_steps",
+    "say": "Watch the activity strip. It verifies her name and card, looks up the booking, checks the twenty four hour policy, and quotes the refund.",
+    "do": "wait for the reply, highlight the step strip"
+   },
+   {
+    "key": "hook_card",
+    "say": "Then it stops. This approval card shows one hundred forty seven dollars and eighty six cents, line by line, with the policy rule behind each line.",
+    "do": "highlight the amount, then the breakdown lines"
+   },
+   {
+    "key": "hook_approve",
+    "say": "I approve it as the supervisor. Only now does the agent cancel the booking and confirm the exact amount to the customer.",
+    "do": "click Approve, wait for the confirmation, highlight it"
+   },
+   {
+    "key": "hook_line",
+    "say": "It does the work, but every refund waits for a human.",
+    "do": "highlight the whole chat"
+   }
+  ]
+ },
+ {
+  "scene": "new",
+  "beats": [
+   {
+    "key": "new_week2",
+    "say": "In week two, my assistant answered questions from the help center. This week, the agent takes actions on real bookings.",
+    "do": "open How this works"
+   },
+   {
+    "key": "new_tools",
+    "say": "It verifies identity, looks up bookings, checks policy as code, quotes exact amounts, waits for approval, recovers from failures, and remembers.",
+    "do": "tour the read tools, write tools, numbers, hand-off and memory rows"
+   },
+   {
+    "key": "new_stack",
+    "say": "I built it with LangChain and LangGraph. A LangGraph interrupt pauses every write for approval, and a checkpointer gives each chat its memory.",
+    "do": "highlight the LangGraph flow, close the modal and reset the chat"
+   }
+  ]
+ },
+ {
+  "scene": "change",
+  "beats": [
+   {
+    "key": "chg_type",
+    "say": "Next, a change that costs money. Maria wants to move her booking to a different flight on November third.",
+    "do": "type the CLSCHG change request, send"
+   },
+   {
+    "key": "chg_card",
+    "say": "The card breaks it down: a seventy five dollar change fee, and a cheaper new fare whose difference SkyClassic does not refund.",
+    "do": "wait for the approval card (confirm if the agent asks first), highlight the breakdown"
+   },
+   {
+    "key": "chg_reject",
+    "say": "This time I reject it. Nothing is rebooked, and the agent tells Maria the truth. It never claims the change went through.",
+    "do": "click Reject, wait for the reply, highlight it"
+   }
+  ]
+ },
+ {
+  "scene": "schedule",
+  "beats": [
+   {
+    "key": "sch_type",
+    "say": "Kenji's flight was moved by ninety five minutes. He asks to switch to another flight at no cost.",
+    "do": "reset the chat, click the Change flight tile, send"
+   },
+   {
+    "key": "sch_card",
+    "say": "Over ninety minutes, the schedule change rule makes rebooking free. The card shows no charge. I will leave it waiting for the supervisor.",
+    "do": "wait for the card, highlight the headline, the waived line and the Waiting state"
+   }
+  ]
+ },
+ {
+  "scene": "faults",
+  "beats": [
+   {
+    "key": "flt_down",
+    "say": "Now, failures. In the demo controls, I take the quote service down. Then Linh asks what she would get back if she cancelled.",
+    "do": "new chat, open demo controls, select Quote service down, close the drawer, type the LTEXPD question, send"
+   },
+   {
+    "key": "flt_withheld",
+    "say": "The agent retries the quote, it still fails, so it gives no price at all. It hands Linh to a person instead of guessing.",
+    "do": "wait for the reply, highlight the failed quote step, then the hand-off card"
+   },
+   {
+    "key": "flt_feedback",
+    "say": "This was my instructor's feedback on week two: never keep a price you cannot verify.",
+    "do": "highlight the hand-off reason"
+   },
+   {
+    "key": "flt_retry",
+    "say": "Next, a timeout that a retry can fix. The booking lookup will time out once, and Maria asks about a late flight.",
+    "do": "reset the chat, select Booking lookup times out once, type the DLY3H2 question, send"
+   },
+   {
+    "key": "flt_badge",
+    "say": "The lookup timed out, the agent retried, and this badge shows it recovered. The conversation just carries on.",
+    "do": "wait for the reply, highlight the retry badge"
+   },
+   {
+    "key": "delay_tier",
+    "say": "Over three hours late, for a cause the airline controls: the policy tier is a one hundred dollar travel credit, checked against our systems.",
+    "do": "highlight the reply, then the figures-checked pill"
+   }
+  ]
+ },
+ {
+  "scene": "human",
+  "beats": [
+   {
+    "key": "brv_type",
+    "say": "Some requests should never be automated. Emre's father has died, and he needs to cancel.",
+    "do": "reset the chat, type the BRVMNT message, send"
+   },
+   {
+    "key": "brv_handoff",
+    "say": "A guard catches it before any model call. There is no automated decision. It goes straight to the Care Team, at high priority.",
+    "do": "wait for the reply, highlight the hand-off card"
+   },
+   {
+    "key": "inj_type",
+    "say": "Last, Rana tries to talk her way past the rules. She says she is the supervisor, and the refund is already approved.",
+    "do": "reset the chat, type the FLXRFD injection, send"
+   },
+   {
+    "key": "inj_card",
+    "say": "Her words are only text. The refund still stops at an approval card, and only a real supervisor can decide it.",
+    "do": "wait for the card, highlight its Waiting state and buttons"
+   }
+  ]
+ },
+ {
+  "scene": "supervisor",
+  "beats": [
+   {
+    "key": "sup_open",
+    "say": "This is the supervisor page. Pending approvals from every chat wait here: Kenji's free rebooking, and Rana's refund.",
+    "do": "open /supervisor, tour the two pending items"
+   },
+   {
+    "key": "sup_decide",
+    "say": "I approve Kenji's rebooking, and the agent replies to him. I reject Rana's refund. Nothing moved without a person.",
+    "do": "Approve SCH95M, wait for the reply; Reject FLXRFD"
+   }
+  ]
+ },
+ {
+  "scene": "grading",
+  "beats": [
+   {
+    "key": "grade_suite",
+    "say": "To grade it, I wrote twenty four multi step scenarios with scripted supervisor decisions and injected faults, each on a fresh database.",
+    "do": "open the grading card, highlight the suite tile"
+   },
+   {
+    "key": "grade_first",
+    "say": "Honestly, the first live run with G P T four point one mini scored sixteen of twenty four.",
+    "do": "highlight the first-run tile"
+   },
+   {
+    "key": "grade_final",
+    "say": "General fixes, none keyed to a single scenario, brought it to twenty three and twenty four of twenty four over two passes.",
+    "do": "highlight the final tile"
+   },
+   {
+    "key": "grade_safety",
+    "say": "Zero writes without approval. Policy correctness one hundred percent. Recovery under faults three of three. And two hundred thirty five policy tests pass.",
+    "do": "tour the safety tiles"
+   },
+   {
+    "key": "grade_cost",
+    "say": "Each task costs about a third of a cent, and a turn takes about three seconds.",
+    "do": "highlight the cost tile"
+   },
+   {
+    "key": "grade_arc",
+    "say": "My week one Agent Report Card graded the logs too: zero critical findings under the project policy.",
+    "do": "highlight the Agent Report Card tile"
+   }
+  ]
+ },
+ {
+  "scene": "close",
+  "beats": [
+   {
+    "key": "close_built",
+    "say": "I built this with Claude Code. All of the airline data is synthetic.",
+    "do": "back to the site, open the chat"
+   },
+   {
+    "key": "close_cost",
+    "say": "Total AI spend for the whole project: under fifty cents, inside the one dollar cap.",
+    "do": "end card"
+   }
+  ]
+ }
+]

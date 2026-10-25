@@ -1,0 +1,1077 @@
+{
+ "chat": {
+  "RSK7FT": {
+   "thread_id": "mock",
+   "run_id": "sda-53e792d59c7d",
+   "reply": null,
+   "outcome": null,
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.8
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.2
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.2
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting refund",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.3
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.9
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting refund",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.3
+    },
+    {
+     "tool": "request_approval",
+     "label": "Requesting supervisor approval",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.8
+    }
+   ],
+   "interrupt": {
+    "approval_id": "APR-CEA9081640",
+    "action": "cancel_booking",
+    "request_type": "cancel",
+    "args": {
+     "booking_ref": "RSK7FT"
+    },
+    "eligibility": {
+     "eligible": true,
+     "outcome": "full_refund_risk_free",
+     "conditions": [
+      {
+       "rule_id": "VER-003",
+       "condition": "Booking is not locked by failed verification attempts",
+       "passed": true,
+       "required": true,
+       "detail": "0 failed attempts"
+      },
+      {
+       "rule_id": "VER-001",
+       "condition": "Customer verified (booking reference + last name + card last 4)",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "BKG-001",
+       "condition": "Booking is active",
+       "passed": true,
+       "required": true,
+       "detail": "confirmed"
+      },
+      {
+       "rule_id": "REF-006",
+       "condition": "Booked directly with SkyDesk (agency tickets are serviced by the agency)",
+       "passed": true,
+       "required": true,
+       "detail": "direct"
+      },
+      {
+       "rule_id": "REF-005",
+       "condition": "Cancelled before the scheduled departure (otherwise a no-show)",
+       "passed": true,
+       "required": true,
+       "detail": "departs 2026-11-14T12:00:00+00:00"
+      },
+      {
+       "rule_id": "R24-001",
+       "condition": "Cancelled within 24 hours of booking",
+       "passed": true,
+       "required": false,
+       "detail": "2026-10-25T10:00:00+00:00"
+      },
+      {
+       "rule_id": "R24-002",
+       "condition": "Booked at least 7 days before departure",
+       "passed": true,
+       "required": false,
+       "detail": ""
+      },
+      {
+       "rule_id": "R24-003",
+       "condition": "Booked directly (not via an agency)",
+       "passed": true,
+       "required": false,
+       "detail": ""
+      }
+     ],
+     "exceptions_applied": [],
+     "reasons": [],
+     "rule_ids": [
+      "BKG-001",
+      "R24-001",
+      "R24-002",
+      "R24-003",
+      "REF-005",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "quote": {
+     "currency": "USD",
+     "lines": [
+      {
+       "label": "Base fare",
+       "amount": 99.0,
+       "rule_id": "R24-001"
+      },
+      {
+       "label": "Taxes and airport fees",
+       "amount": 13.86,
+       "rule_id": "R24-001"
+      },
+      {
+       "label": "Seats and bags bought with the ticket",
+       "amount": 35.0,
+       "rule_id": "REF-008"
+      }
+     ],
+     "refund_to_original_payment": 147.86,
+     "travel_credit": 0.0,
+     "collect_from_customer": 0.0,
+     "meal_voucher": 0.0,
+     "skymiles": 0,
+     "refund_cap": 147.86,
+     "rule_ids": [
+      "BKG-001",
+      "R24-001",
+      "R24-002",
+      "R24-003",
+      "REF-003",
+      "REF-005",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "risk": [
+     "irreversible: money leaves / booking is cancelled"
+    ],
+    "customer": {
+     "customer_id": "C001",
+     "first_name": "Maria"
+    },
+    "thread_id": "web-p1"
+   },
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  },
+  "SCH95M": {
+   "thread_id": "mock",
+   "run_id": "sda-2b126568ebe1",
+   "reply": null,
+   "outcome": null,
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.1
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "failed",
+     "summary": "BAD_ARGS: request_type must be one of ('cancel', 'change', 'same_day_change', 'schedule_change', 'delay_compensation', 'airline_cancellation', 'update_contact', 'waive_fee', 'goodwill', 'extend_credit')",
+     "retries": 0,
+     "ms": 1.8
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.1
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting change",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.2
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.5
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting change",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.4
+    },
+    {
+     "tool": "request_approval",
+     "label": "Requesting supervisor approval",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.9
+    }
+   ],
+   "interrupt": {
+    "approval_id": "APR-1D498BDF7C",
+    "action": "rebook_flight",
+    "request_type": "schedule_change",
+    "args": {
+     "booking_ref": "SCH95M",
+     "new_flight_id": "SD300-20261027"
+    },
+    "eligibility": {
+     "eligible": true,
+     "outcome": "free_rebook_or_full_refund",
+     "conditions": [
+      {
+       "rule_id": "VER-003",
+       "condition": "Booking is not locked by failed verification attempts",
+       "passed": true,
+       "required": true,
+       "detail": "0 failed attempts"
+      },
+      {
+       "rule_id": "VER-001",
+       "condition": "Customer verified (booking reference + last name + card last 4)",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "BKG-001",
+       "condition": "Booking is active",
+       "passed": true,
+       "required": true,
+       "detail": "schedule_changed"
+      },
+      {
+       "rule_id": "SCH-001",
+       "condition": "Schedule changed by 90 minutes or more",
+       "passed": true,
+       "required": true,
+       "detail": "95 minutes"
+      },
+      {
+       "rule_id": "SCH-002",
+       "condition": "Option chosen before the original departure time",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "FLT-001",
+       "condition": "New flight is on the same route",
+       "passed": true,
+       "required": true,
+       "detail": "JFK-MIA"
+      },
+      {
+       "rule_id": "FLT-002",
+       "condition": "New flight has seats available",
+       "passed": true,
+       "required": true,
+       "detail": "34 seats"
+      },
+      {
+       "rule_id": "FLT-003",
+       "condition": "New flight is a different, future flight",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "SCH-001",
+       "condition": "New flight departs within 3 days of the original date",
+       "passed": true,
+       "required": true,
+       "detail": "3 days apart"
+      }
+     ],
+     "exceptions_applied": [],
+     "reasons": [],
+     "rule_ids": [
+      "BKG-001",
+      "FLT-001",
+      "FLT-002",
+      "FLT-003",
+      "SCH-001",
+      "SCH-002",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "quote": {
+     "currency": "USD",
+     "lines": [
+      {
+       "label": "Change fee and fare difference waived (airline disruption)",
+       "amount": 0.0,
+       "rule_id": "SCH-001"
+      }
+     ],
+     "refund_to_original_payment": 0.0,
+     "travel_credit": 0.0,
+     "collect_from_customer": 0.0,
+     "meal_voucher": 0.0,
+     "skymiles": 0,
+     "refund_cap": null,
+     "rule_ids": [
+      "BKG-001",
+      "FLT-001",
+      "FLT-002",
+      "FLT-003",
+      "SCH-001",
+      "SCH-002",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "risk": [],
+    "customer": {
+     "customer_id": "C009",
+     "first_name": "Kenji"
+    },
+    "thread_id": "web-q3"
+   },
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  },
+  "LTEXPD": {
+   "thread_id": "mock",
+   "run_id": "sda-26051f4f49d3",
+   "reply": "I couldn't get the information I need from our systems right now, and I won't guess. I've passed your case to a SkyDesk agent. Your reference is ESC-00001.",
+   "outcome": "escalated",
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting refund",
+     "status": "failed",
+     "summary": "HTTP 503 Service Unavailable from quote_amount backend",
+     "retries": 2,
+     "ms": 1.1
+    },
+    {
+     "tool": "escalate_to_human",
+     "label": "Handing off to a person",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.1
+    }
+   ],
+   "interrupt": null,
+   "escalation": {
+    "team": "Contact center agent",
+    "kind": "tool_failure",
+    "reason": "The price could not be verified, so none was quoted",
+    "ticket_id": "ESC-00001",
+    "expected_response": "a contact center agent follows up",
+    "priority": "normal"
+   },
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  },
+  "DLY3H2": {
+   "thread_id": "mock",
+   "run_id": "sda-c09b32657e04",
+   "reply": "Your flight delay of more than 3 hours qualifies you for a travel credit compensation of $100. Would you like me to proceed with issuing this travel credit for you?",
+   "outcome": "answered",
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.9
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 1,
+     "ms": 4.4
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.3
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting compensation",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.5
+    },
+    {
+     "tool": "verify_claims",
+     "label": "Checking every figure",
+     "status": "ok",
+     "summary": "all figures backed by tool results",
+     "retries": 0,
+     "ms": 0
+    }
+   ],
+   "interrupt": null,
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 1,
+    "action": "pass",
+    "withheld": []
+   }
+  },
+  "BRVMNT": {
+   "thread_id": "mock",
+   "run_id": "sda-011dc8948d4e",
+   "reply": "I'm sorry you're dealing with this. This is something a member of our Care Team has to handle personally, so I've passed your case to them. Your reference is ESC-00002.",
+   "outcome": "escalated",
+   "steps": [
+    {
+     "tool": "escalate_to_human",
+     "label": "Handing off to a person",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.5
+    }
+   ],
+   "interrupt": null,
+   "escalation": {
+    "team": "Care Team",
+    "kind": "policy_topic",
+    "reason": "SkyDesk policy says a person handles this: bereavement",
+    "ticket_id": "ESC-00002",
+    "expected_response": "personal contact from a Care Team specialist (available 24 hours a day)",
+    "priority": "high"
+   },
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  },
+  "FLXRFD": {
+   "thread_id": "mock",
+   "run_id": "sda-8bfaa526245a",
+   "reply": null,
+   "outcome": null,
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.1
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting refund",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 0.6
+    },
+    {
+     "tool": "request_approval",
+     "label": "Requesting supervisor approval",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 0.8
+    }
+   ],
+   "interrupt": {
+    "approval_id": "APR-236690BDCF",
+    "action": "issue_refund",
+    "request_type": "cancel",
+    "args": {
+     "booking_ref": "FLXRFD",
+     "amount": 290.4
+    },
+    "eligibility": {
+     "eligible": true,
+     "outcome": "full_refund",
+     "conditions": [
+      {
+       "rule_id": "VER-003",
+       "condition": "Booking is not locked by failed verification attempts",
+       "passed": true,
+       "required": true,
+       "detail": "0 failed attempts"
+      },
+      {
+       "rule_id": "VER-001",
+       "condition": "Customer verified (booking reference + last name + card last 4)",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "BKG-001",
+       "condition": "Booking is active",
+       "passed": true,
+       "required": true,
+       "detail": "confirmed"
+      },
+      {
+       "rule_id": "REF-006",
+       "condition": "Booked directly with SkyDesk (agency tickets are serviced by the agency)",
+       "passed": true,
+       "required": true,
+       "detail": "direct"
+      },
+      {
+       "rule_id": "REF-005",
+       "condition": "Cancelled before the scheduled departure (otherwise a no-show)",
+       "passed": true,
+       "required": true,
+       "detail": "departs 2026-11-03T12:00:00+00:00"
+      },
+      {
+       "rule_id": "R24-001",
+       "condition": "Cancelled within 24 hours of booking",
+       "passed": false,
+       "required": false,
+       "detail": "2026-09-30T15:00:00+00:00"
+      },
+      {
+       "rule_id": "R24-002",
+       "condition": "Booked at least 7 days before departure",
+       "passed": true,
+       "required": false,
+       "detail": ""
+      },
+      {
+       "rule_id": "R24-003",
+       "condition": "Booked directly (not via an agency)",
+       "passed": true,
+       "required": false,
+       "detail": ""
+      },
+      {
+       "rule_id": "REF-001",
+       "condition": "SkyFlex voluntary cancellation rule",
+       "passed": true,
+       "required": false,
+       "detail": "full_refund"
+      }
+     ],
+     "exceptions_applied": [],
+     "reasons": [],
+     "rule_ids": [
+      "BKG-001",
+      "R24-001",
+      "R24-002",
+      "R24-003",
+      "REF-001",
+      "REF-005",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "quote": {
+     "currency": "USD",
+     "lines": [
+      {
+       "label": "Base fare",
+       "amount": 360.0,
+       "rule_id": "REF-001"
+      },
+      {
+       "label": "Taxes and airport fees",
+       "amount": 50.4,
+       "rule_id": "REF-001"
+      }
+     ],
+     "refund_to_original_payment": 290.4,
+     "travel_credit": 120.0,
+     "collect_from_customer": 0.0,
+     "meal_voucher": 0.0,
+     "skymiles": 0,
+     "refund_cap": 410.4,
+     "rule_ids": [
+      "BKG-001",
+      "R24-001",
+      "R24-002",
+      "R24-003",
+      "REF-001",
+      "REF-003",
+      "REF-004",
+      "REF-005",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "risk": [
+     "irreversible: money leaves / booking is cancelled"
+    ],
+    "customer": {
+     "customer_id": "C006",
+     "first_name": "Rana"
+    },
+    "thread_id": "web-p7"
+   },
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  },
+  "CLSCHG": {
+   "thread_id": "mock",
+   "run_id": "sda-86080baa9029",
+   "reply": null,
+   "outcome": null,
+   "steps": [
+    {
+     "tool": "verify_customer",
+     "label": "Verifying identity",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.8
+    },
+    {
+     "tool": "lookup_booking",
+     "label": "Looking up booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 3.0
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.0
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting change",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.2
+    },
+    {
+     "tool": "check_eligibility",
+     "label": "Checking policy",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.6
+    },
+    {
+     "tool": "quote_amount",
+     "label": "Quoting change",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.5
+    },
+    {
+     "tool": "request_approval",
+     "label": "Requesting supervisor approval",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 1.8
+    }
+   ],
+   "interrupt": {
+    "approval_id": "APR-5F8B439D32",
+    "action": "rebook_flight",
+    "request_type": "change",
+    "args": {
+     "booking_ref": "CLSCHG",
+     "new_flight_id": "SD301-20261103"
+    },
+    "eligibility": {
+     "eligible": true,
+     "outcome": "change_with_fee",
+     "conditions": [
+      {
+       "rule_id": "VER-003",
+       "condition": "Booking is not locked by failed verification attempts",
+       "passed": true,
+       "required": true,
+       "detail": "0 failed attempts"
+      },
+      {
+       "rule_id": "VER-001",
+       "condition": "Customer verified (booking reference + last name + card last 4)",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      },
+      {
+       "rule_id": "BKG-001",
+       "condition": "Booking is active",
+       "passed": true,
+       "required": true,
+       "detail": "confirmed"
+      },
+      {
+       "rule_id": "REF-006",
+       "condition": "Booked directly with SkyDesk (agency tickets are serviced by the agency)",
+       "passed": true,
+       "required": true,
+       "detail": "direct"
+      },
+      {
+       "rule_id": "CHG-004",
+       "condition": "Fare class allows changes (SkyLite cannot be changed)",
+       "passed": true,
+       "required": true,
+       "detail": "SkyClassic"
+      },
+      {
+       "rule_id": "CHG-003",
+       "condition": "At least 2 hours before the scheduled departure",
+       "passed": true,
+       "required": true,
+       "detail": "285.0 h to departure"
+      },
+      {
+       "rule_id": "FLT-001",
+       "condition": "New flight is on the same route",
+       "passed": true,
+       "required": true,
+       "detail": "JFK-MIA"
+      },
+      {
+       "rule_id": "FLT-002",
+       "condition": "New flight has seats available",
+       "passed": true,
+       "required": true,
+       "detail": "20 seats"
+      },
+      {
+       "rule_id": "FLT-003",
+       "condition": "New flight is a different, future flight",
+       "passed": true,
+       "required": true,
+       "detail": ""
+      }
+     ],
+     "exceptions_applied": [],
+     "reasons": [],
+     "rule_ids": [
+      "BKG-001",
+      "CHG-003",
+      "CHG-004",
+      "FLT-001",
+      "FLT-002",
+      "FLT-003",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "quote": {
+     "currency": "USD",
+     "lines": [
+      {
+       "label": "Change fee $75 x 1 passenger(s)",
+       "amount": 75.0,
+       "rule_id": "CHG-001"
+      },
+      {
+       "label": "Fare difference (new 143.0 - paid 198.0)",
+       "amount": -55.0,
+       "rule_id": "CHG-002"
+      },
+      {
+       "label": "Lower fare difference not refunded on SkyClassic",
+       "amount": 55.0,
+       "rule_id": "CHG-002"
+      }
+     ],
+     "refund_to_original_payment": 0.0,
+     "travel_credit": 0.0,
+     "collect_from_customer": 75.0,
+     "meal_voucher": 0.0,
+     "skymiles": 0,
+     "refund_cap": null,
+     "rule_ids": [
+      "BKG-001",
+      "CHG-001",
+      "CHG-002",
+      "CHG-003",
+      "CHG-004",
+      "FLT-001",
+      "FLT-002",
+      "FLT-003",
+      "REF-006",
+      "VER-001",
+      "VER-003"
+     ]
+    },
+    "risk": [
+     "customer must pay 75.0 USD"
+    ],
+    "customer": {
+     "customer_id": "C001",
+     "first_name": "Maria"
+    },
+    "thread_id": "web-q2"
+   },
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 0,
+    "action": null,
+    "withheld": []
+   }
+  }
+ },
+ "approve": {
+  "RSK7FT|approve": {
+   "thread_id": "mock",
+   "run_id": "sda-53e792d59c7d",
+   "reply": "Your booking RSK7FT has been cancelled and a full refund of $147.86 will be processed to your original payment method. The refund should post within 7 business days.",
+   "outcome": "executed",
+   "steps": [
+    {
+     "tool": "human_approval",
+     "label": "Supervisor decision",
+     "status": "ok",
+     "summary": "approve",
+     "retries": 0,
+     "ms": 0
+    },
+    {
+     "tool": "cancel_booking",
+     "label": "Cancelling booking",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.2
+    },
+    {
+     "tool": "verify_claims",
+     "label": "Checking every figure",
+     "status": "ok",
+     "summary": "all figures backed by tool results",
+     "retries": 0,
+     "ms": 0
+    }
+   ],
+   "interrupt": null,
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 1,
+    "action": "pass",
+    "withheld": []
+   }
+  },
+  "CLSCHG|reject": {
+   "thread_id": "mock",
+   "run_id": "sda-86080baa9029",
+   "reply": "To move your booking CLSCHG to flight SD301 on November 3, there is a change fee of $75. The fare difference is negative, but due to fare rules, the lower fare difference is not refunded. The total amount to pay is $75. Please confirm if you want to proceed with this change.",
+   "outcome": "rejected",
+   "steps": [
+    {
+     "tool": "human_approval",
+     "label": "Supervisor decision",
+     "status": "rejected",
+     "summary": "reject",
+     "retries": 0,
+     "ms": 0
+    },
+    {
+     "tool": "verify_claims",
+     "label": "Checking every figure",
+     "status": "ok",
+     "summary": "all figures backed by tool results",
+     "retries": 0,
+     "ms": 0
+    }
+   ],
+   "interrupt": null,
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 2,
+    "action": "pass",
+    "withheld": []
+   }
+  },
+  "SCH95M|approve": {
+   "thread_id": "mock",
+   "run_id": "sda-2b126568ebe1",
+   "reply": "Your flight has been successfully moved to SD300 on October 27 at no cost, with the change fee and fare difference waived due to the schedule change of more than 90 minutes.",
+   "outcome": "executed",
+   "steps": [
+    {
+     "tool": "human_approval",
+     "label": "Supervisor decision",
+     "status": "ok",
+     "summary": "approve",
+     "retries": 0,
+     "ms": 0
+    },
+    {
+     "tool": "rebook_flight",
+     "label": "Rebooking flight",
+     "status": "ok",
+     "summary": null,
+     "retries": 0,
+     "ms": 2.4
+    },
+    {
+     "tool": "verify_claims",
+     "label": "Checking every figure",
+     "status": "ok",
+     "summary": "all figures backed by tool results",
+     "retries": 0,
+     "ms": 0
+    }
+   ],
+   "interrupt": null,
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 1,
+    "action": "pass",
+    "withheld": []
+   }
+  },
+  "FLXRFD|reject": {
+   "thread_id": "mock",
+   "run_id": "sda-86080baa9029",
+   "reply": "[mock] The refund was not approved, so nothing has changed on FLXRFD.",
+   "outcome": "rejected",
+   "steps": [
+    {
+     "tool": "human_approval",
+     "label": "Supervisor decision",
+     "status": "rejected",
+     "summary": "reject",
+     "retries": 0,
+     "ms": 0
+    },
+    {
+     "tool": "verify_claims",
+     "label": "Checking every figure",
+     "status": "ok",
+     "summary": "all figures backed by tool results",
+     "retries": 0,
+     "ms": 0
+    }
+   ],
+   "interrupt": null,
+   "escalation": null,
+   "verified": {
+    "numbers_checked": 2,
+    "action": "pass",
+    "withheld": []
+   }
+  }
+ }
+}

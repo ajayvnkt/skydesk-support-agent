@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyDesk Airways</title>
+<meta name="description" content="SkyDesk Airways demo site with the SkyDesk Assistant support chat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a1f44'/%3E%3Cpath d='M6 19l20-8-6 10-4-3-3 5v-6z' fill='%2364b5ff'/%3E%3C/svg%3E">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M2 16l20-7-5 9-4-3-3 5v-6z"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 002-2h14a2 2 0 002 2v2a2 2 0 000 4v2a2 2 0 00-2 2H5a2 2 0 00-2-2v-2a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="13" rx="2"/><path d="M9 7V4h6v3M9 20v1M15 20v1M9 11v5M15 11v5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-refund" viewBox="0 0 24 24"><path d="M4 12a8 8 0 108-8H7"/><path d="M9 1L6 4l3 3"/><path d="M12 8v8M10 10h3a1.5 1.5 0 010 3h-2a1.5 1.5 0 000 3h3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-6z"/><path d="M11 14l9-10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-min" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 7h12l-3-3M17 17H5l3 3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-retry" viewBox="0 0 24 24"><path d="M20 11a8 8 0 10-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a11 11 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2z"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#" aria-label="SkyDesk Airways home">
+      <span class="logo-mark"><svg><use href="#i-plane"/></svg></span>
+      <span>SkyDesk<b>Airways</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <button data-toast>Book</button>
+      <button data-ask="Hi, Rana Haddad, booking CNTCT5, card ending 0625. Please change my email to rana.h.new@example.com.">Manage booking</button>
+      <button data-toast>Check-in</button>
+      <button data-ask="My flight on DLY3H2 arrived more than 3 hours late. Maria Garcia, card 9402. What compensation do I get?">Flight status</button>
+      <button data-toast>Deals</button>
+      <button data-open-chat>Help</button>
+    </nav>
+    <button class="btn btn-ghost signin" data-toast><svg><use href="#i-user"/></svg>Sign in</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <svg class="sky-art" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd6a8"/><stop offset="1" stop-color="#ffd6a8" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="1130" cy="150" r="260" fill="url(#sun)" opacity=".55"/>
+      <g fill="#fff">
+        <g opacity=".22"><ellipse cx="220" cy="380" rx="200" ry="34"/><ellipse cx="300" cy="360" rx="110" ry="40"/></g>
+        <g opacity=".3"><ellipse cx="1210" cy="420" rx="230" ry="36"/><ellipse cx="1120" cy="398" rx="120" ry="44"/><ellipse cx="1280" cy="402" rx="90" ry="34"/></g>
+        <g opacity=".16"><ellipse cx="760" cy="120" rx="150" ry="20"/><ellipse cx="820" cy="106" rx="70" ry="24"/></g>
+      </g>
+      <path d="M-20 430 C 360 260, 760 300, 1040 170" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+      <g transform="translate(1040 170) rotate(-24) scale(2.4)" fill="#fff"><path d="M-12 0 l22 -2 l6 2 l-6 2 z"/><path d="M-2 -1 l-6 -9 h3 l9 9 z"/><path d="M-2 1 l-6 9 h3 l9 -9 z"/><path d="M-11 -1 l-3 -4 h2 l4 4 z"/></g>
+    </svg>
+    <div class="wrap hero-in">
+      <p class="eyebrow">Summer sale &middot; fares from $79</p>
+      <h1>Where to next?</h1>
+      <p class="lede">Book direct for the lowest fares, free seat selection on SkyClassic and a help center that actually answers.</p>
+
+      <form class="search" onsubmit="return false" aria-label="Flight search (demo)">
+        <div class="trip" role="radiogroup" aria-label="Trip type">
+          <button type="button" class="on" role="radio" aria-checked="true">Round trip</button>
+          <button type="button" role="radio" aria-checked="false">One way</button>
+          <button type="button" role="radio" aria-checked="false">Multi-city</button>
+        </div>
+        <div class="fields">
+          <label class="f f-from"><span>From</span><input value="Austin (AUS)"></label>
+          <button type="button" class="swap" aria-label="Swap origin and destination"><svg><use href="#i-swap"/></svg></button>
+          <label class="f f-to"><span>To</span><input value="Lisbon (LIS)"></label>
+          <label class="f"><span>Depart</span><input value="Fri, Nov 14"></label>
+          <label class="f"><span>Return</span><input value="Sun, Nov 23"></label>
+          <label class="f"><span>Passengers</span><input value="2 adults"></label>
+          <label class="f"><span>Cabin</span><select><option>Economy</option><option>Premium</option><option>Business</option></select></label>
+          <button type="submit" class="btn btn-accent go" data-toast><svg><use href="#i-plane"/></svg>Search flights</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap tiles" aria-label="Quick actions">
+    <button class="tile" id="tile-manage" data-ask="Hi, Rana Haddad, booking CNTCT5, card ending 0625. Please change my email to rana.h.new@example.com."><span class="ic"><svg><use href="#i-ticket"/></svg></span><b>Manage booking</b><small>Update contact details</small></button>
+    <button class="tile" id="tile-change" data-ask="Kenji Tanaka, booking SCH95M, card 2634. You moved my flight by more than an hour and a half. Please put me on flight SD300 on October 27 instead, at no cost."><span class="ic"><svg><use href="#i-swap"/></svg></span><b>Change flight</b><small>Rebook after a schedule change</small></button>
+    <button class="tile" id="tile-refund" data-ask="Hi, I booked RSK7FT this morning by mistake. I'm Maria Garcia, card ending 5147. Please cancel it and refund me."><span class="ic"><svg><use href="#i-refund"/></svg></span><b>Refunds</b><small>Cancel and get money back</small></button>
+    <button class="tile" id="tile-delay" data-ask="My flight on DLY3H2 arrived more than 3 hours late. Maria Garcia, card 9402. What compensation do I get?"><span class="ic"><svg><use href="#i-clock"/></svg></span><b>Flight status</b><small>Delays and compensation</small></button>
+    <button class="tile" id="tile-bags" data-ask="How many checked bags are included on SkyClassic?"><span class="ic"><svg><use href="#i-bag"/></svg></span><b>Baggage</b><small>Allowances and fees</small></button>
+    <button class="tile" data-toast><span class="ic"><svg><use href="#i-check"/></svg></span><b>Check-in</b><small>Opens 24 h before departure</small></button>
+  </section>
+
+  <section class="wrap deals" aria-labelledby="deals-h">
+    <div class="sec-head"><h2 id="deals-h">Trending destinations</h2><button class="link" data-toast>See all deals</button></div>
+    <div class="deal-row">
+      <button class="deal d1" data-toast><span class="tag">Sale</span><span class="d-txt"><b>Lisbon</b><small>Round trip from</small><em>$489</em></span></button>
+      <button class="deal d2" data-toast><span class="d-txt"><b>Tokyo</b><small>Round trip from</small><em>$812</em></span></button>
+      <button class="deal d3" data-toast><span class="tag">New route</span><span class="d-txt"><b>Reykjavik</b><small>Round trip from</small><em>$398</em></span></button>
+      <button class="deal d4" data-toast><span class="d-txt"><b>Cancún</b><small>Round trip from</small><em>$259</em></span></button>
+    </div>
+  </section>
+
+  <section class="wrap help-strip">
+    <div class="help-ic"><svg><use href="#i-chat"/></svg></div>
+    <div><h2>Need help?</h2><p>The SkyDesk Assistant looks up your booking, checks what our policy allows, and makes the change once a supervisor approves it. Some things it always hands to a person.</p></div>
+    <button class="btn btn-primary" data-open-chat>Chat with the assistant</button>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><a class="logo light" href="#"><span class="logo-mark"><svg><use href="#i-plane"/></svg></span><span>SkyDesk<b>Airways</b></span></a><p>A demo airline for a support agent with supervisor approval. Nothing here can be booked.</p></div>
+    <div><h3>Travel</h3><button data-toast>Book a flight</button><button data-toast>Destinations</button><button data-toast>SkyMiles</button></div>
+    <div><h3>Help</h3><button data-open-chat>Contact us</button><button data-ask="How many checked bags are included on SkyClassic?">Baggage</button><button data-ask="Can I get a refund if I cancel within 24 hours?">Refunds</button></div>
+    <div><h3>Company</h3><button data-toast>About</button><button data-toast>Careers</button><button data-modal>How the assistant works</button></div>
+  </div>
+  <div class="wrap fine">&copy; 2026 SkyDesk Airways (fictional). Demo site.</div>
+</footer>
+
+<button class="launcher" id="launcher" aria-controls="chat" aria-expanded="false">
+  <span class="l-ic"><svg><use href="#i-chat"/></svg></span>
+  <span class="l-txt"><b>Need help?</b><small>Chat with SkyDesk Assistant</small></span>
+</button>
+
+<section class="chat" id="chat" role="dialog" aria-label="SkyDesk Assistant chat" hidden>
+  <header class="chat-head">
+    <span class="avatar" aria-hidden="true"><svg><use href="#i-plane"/></svg></span>
+    <div class="who"><b>SkyDesk Assistant</b><small><i class="dot" id="dot"></i>Changes need approval</small></div>
+    <button class="icon-btn" id="gearBtn" aria-label="Demo controls" aria-controls="drawer" aria-expanded="false" title="Demo controls"><svg><use href="#i-gear"/></svg></button>
+    <button class="icon-btn" id="minBtn" aria-label="Minimize chat"><svg><use href="#i-min"/></svg></button>
+    <button class="icon-btn" id="closeBtn" aria-label="Close chat and clear conversation"><svg><use href="#i-x"/></svg></button>
+  </header>
+  <div class="drawer" id="drawer" hidden>
+    <h3>Demo controls</h3>
+    <p>Make a backend tool fail, to show retries and safe hand-offs.</p>
+    <label><input type="radio" name="fault" value="none" checked> No faults</label>
+    <label><input type="radio" name="fault" value="quote_flaky"> Quote service fails once (retried)</label>
+    <label><input type="radio" name="fault" value="lookup_flaky"> Booking lookup times out once (retried)</label>
+    <label><input type="radio" name="fault" value="quote_down"> Quote service down</label>
+    <label><input type="radio" name="fault" value="search_timeout"> Help-center search times out</label>
+    <div class="drawer-foot"><button class="btn btn-soft" id="resetBtn" type="button">Reset demo data</button><a class="link" href="/supervisor" target="_blank" rel="noopener">Supervisor page</a></div>
+  </div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <form class="composer" id="composer">
+    <label class="sr" for="input">Message</label>
+    <input id="input" autocomplete="off" maxlength="2000" placeholder="Booking reference, name, what you need...">
+    <button class="send" id="send" aria-label="Send message"><svg><use href="#i-send"/></svg></button>
+  </form>
+  <footer class="chat-foot"><button class="link" data-modal>How this works</button><span><b class="ptag" id="plannerTag"></b>Nothing changes without approval.</span></footer>
+</section>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-h">
+    <button class="icon-btn modal-x" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    <h2 id="modal-h">How the SkyDesk Assistant works</h2>
+    <p class="lede-sm">A LangGraph agent that verifies you, looks up your booking, checks policy as code, quotes exact amounts, and proposes changes that pause for a supervisor's approval.</p>
+    <table class="fw">
+      <tr><th>Read tools</th><td>Verify identity, look up bookings, check eligibility, quote amounts, search the help center. These run on their own, with timeouts and retries.</td></tr>
+      <tr><th>Write tools</th><td>Rebook, refund, voucher, waive fee, update contact, cancel. Each one pauses for supervisor approval and runs only with that approval id.</td></tr>
+      <tr><th>Numbers</th><td>Every amount in a reply must match a quote from our systems. If a price can't be verified, it is withheld or the case goes to a person.</td></tr>
+      <tr><th>Hand-off</th><td>Bereavement, legal, fraud and chargebacks always go to a person, as does any case the assistant can't finish safely.</td></tr>
+      <tr><th>Memory</th><td>Each chat is a thread saved in a SQLite checkpointer, so a pending approval survives a restart.</td></tr>
+    </table>
+    <h3>LangGraph flow</h3>
+    <div class="flow" aria-label="Flow: guard, planner and tools, propose, supervisor approval, execute, verify, respond">
+      <span>guard</span><i></i><span>planner &#8644; tools</span><i></i><span>propose</span><i></i><span>approval</span><i></i><span>execute</span><i></i><span>verify</span>
+      <div class="ends"><span class="r-a">answer</span><span class="r-e">escalate</span></div>
+    </div>
+    <p class="small"><a href="/supervisor" target="_blank" rel="noopener">Open the supervisor page</a> &middot; <a id="logLink" href="#" download>Download this chat's run log</a></p>
+    <p class="cost" id="cost">AI cost so far: loading...</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="approval.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

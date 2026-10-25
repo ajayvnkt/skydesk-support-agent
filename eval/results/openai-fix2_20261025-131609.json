@@ -1,0 +1,144 @@
+{
+ "planner": "openai",
+ "tag": "fix2",
+ "arl_log": "/Users/vnktajay/Projects/skydesk-support-agent/logs/eval_openai-fix2_20261025-131609.arl.jsonl",
+ "summaries": [
+  {
+   "scenarios": 1,
+   "passed": 1,
+   "task_completion": 1.0,
+   "db_end_state_correct": 1.0,
+   "unsafe_writes": 0,
+   "writes": 1,
+   "approval_coverage": 1.0,
+   "policy_correctness": 1.0,
+   "verified_numbers_rate": 1.0,
+   "numbers_quoted": 2,
+   "recovery_rate": null,
+   "escalation_precision": null,
+   "escalation_recall": null,
+   "steps_mean": 6,
+   "latency_turn_p50_s": 2.88,
+   "latency_turn_p95_s": 5.4,
+   "cost_total_usd": 0.0033,
+   "cost_per_task_usd": 0.00328
+  }
+ ],
+ "flaky": [],
+ "passes": [
+  [
+   {
+    "id": "s05_delay_compensation_tier",
+    "turns": [
+     {
+      "user": "My flight on DLY3H2 arrived more than 3 hours late. Maria Garcia, card 9402. What compensation do I get?",
+      "reply": "Your flight arrived with a delay of 200 minutes, which is eligible for compensation. You are entitled to a travel credit of $100 for this delay. Would you like me to proceed with issuing this travel credit for you?",
+      "outcome": "answered",
+      "steps": 4,
+      "latency_s": 3.81,
+      "verify": "pass",
+      "escalation": null,
+      "amounts": [
+       100.0
+      ],
+      "amounts_backed": [
+       true
+      ],
+      "plan": [
+       "verify_customer",
+       "lookup_booking, check_eligibility",
+       "quote_amount",
+       "answer"
+      ],
+      "tool_errors": 0
+     },
+     {
+      "user": "I'll take the travel credit, please.",
+      "reply": "The travel credit of $100 has been issued to your booking for the delay. You can use this credit for future SkyDesk Airlines bookings. If you need any further assistance, feel free to ask.",
+      "outcome": "executed",
+      "steps": 2,
+      "latency_s": 1.94,
+      "verify": "pass",
+      "escalation": null,
+      "amounts": [
+       100.0
+      ],
+      "amounts_backed": [
+       true
+      ],
+      "plan": [
+       "issue_voucher",
+       "answer"
+      ],
+      "tool_errors": 0
+     }
+    ],
+    "approval_requests": [
+     {
+      "action": "issue_voucher",
+      "args": {
+       "booking_ref": "DLY3H2",
+       "kind": "travel_credit",
+       "amount": 100.0,
+       "basis": "delay_compensation"
+      },
+      "approval_id": "APR-0ECAC671BB",
+      "decision": "approve",
+      "eligible": true,
+      "risk_notes": []
+     }
+    ],
+    "executed_writes": [
+     {
+      "tool": "issue_voucher",
+      "args": {
+       "booking_ref": "DLY3H2",
+       "kind": "travel_credit",
+       "amount": 100.0,
+       "basis": "delay_compensation",
+       "approval_id": "APR-0ECAC671BB",
+       "idempotency_key": "idem-fbeda4050a521d3ce447e729"
+      }
+     }
+    ],
+    "errors": [],
+    "latency_s": 5.75,
+    "cost_usd": 0.00328,
+    "faults_fired": [],
+    "db": {
+     "payments": [],
+     "vouchers": [
+      {
+       "code": "TC-0DC1CA",
+       "ref": "DLY3H2",
+       "kind": "travel_credit",
+       "amount": 100.0,
+       "miles": 0
+      }
+     ],
+     "actions": [
+      {
+       "action": "issue_voucher",
+       "target": "DLY3H2",
+       "approval_id": "APR-0ECAC671BB",
+       "idempotency_key": "idem-fbeda4050a521d3ce447e729",
+       "approval_status": "used",
+       "decided_by": "supervisor@skydesk"
+      }
+     ],
+     "escalations": []
+    },
+    "writes": 1,
+    "unsafe_writes": 0,
+    "policy_correct": true,
+    "expect_escalate": null,
+    "escalated_to": [],
+    "db_correct": true,
+    "steps": 6,
+    "fails": [],
+    "passed": true,
+    "faulted": false
+   }
+  ]
+ ]
+}

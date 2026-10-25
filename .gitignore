@@ -1,0 +1,18 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+store/
+submission/
+video/.venv/
+video/models/
+video/out/
+# local run artefacts: per-browser chat logs, process stdout
+logs/ui/
+logs/*.out
+# local code-graph cache
+graphify-out/
+# eval scratch: per-scenario airline/memory DBs
+eval/out/
